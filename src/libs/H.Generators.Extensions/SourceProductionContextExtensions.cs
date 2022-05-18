@@ -25,10 +25,16 @@ public static class SourceProductionContextExtensions
     public static void ReportException(
         this SourceProductionContext context,
         string id,
-        Exception exception)
+        Exception exception,
+        string? prefix = null)
     {
         id = id ?? throw new ArgumentNullException(nameof(id));
         exception = exception ?? throw new ArgumentNullException(nameof(exception));
+
+        if (prefix != null)
+        {
+            id = $"{prefix}{id}";
+        }
 
         context.ReportDiagnostic(
             Diagnostic.Create(
