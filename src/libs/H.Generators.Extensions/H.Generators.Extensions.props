@@ -1,0 +1,24 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <GetTargetPathDependsOn>$(GetTargetPathDependsOn);AddGenerationTimeReferences</GetTargetPathDependsOn>
+  </PropertyGroup>
+
+  <!-- 
+    https://github.com/dotnet/roslyn/issues/52017#issuecomment-1046216200
+    This automatically adds explicit and transient dependencies so that they are available at the time the generator is executed. 
+  -->
+  <Target Name="AddGenerationTimeReferences" AfterTargets="ResolvePackageDependenciesForBuild">
+    <ItemGroup>
+      <ResolvedCompileFileDefinitionsWithoutSystem Include="%(ResolvedCompileFileDefinitions.Identity)" Condition="!$([System.String]::new(%(ResolvedCompileFileDefinitions.Filename)).StartsWith('System')) AND !$([System.String]::new(%(ResolvedCompileFileDefinitions.Filename)).StartsWith('Microsoft'))" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="@(ResolvedCompileFileDefinitionsWithoutSystem)" Pack="true" PackagePath="analyzers/dotnet/cs" />
+      <TargetPathWithTargetPlatformMoniker Include="@(ResolvedCompileFileDefinitionsWithoutSystem)" IncludeRuntimeDependency="false" />
+    </ItemGroup>
+
+    <Message Text="Added generation time reference: %(ResolvedCompileFileDefinitionsWithoutSystem.Identity)" Importance="high"/>
+  </Target>
+
+</Project>
