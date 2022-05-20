@@ -4,8 +4,19 @@ using System.Text;
 
 namespace H.Generators.Extensions;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SourceProductionContextExtensions
 {
+    /// <summary>
+    /// Adds <see cref="SourceText"/> in <see cref="Encoding.UTF8"/> encoding.
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="hintName"></param>
+    /// <param name="text"></param>
+    /// <param name="encoding"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public static void AddTextSource(
         this SourceProductionContext context,
         string hintName,
@@ -22,6 +33,14 @@ public static class SourceProductionContextExtensions
                 encoding ?? Encoding.UTF8));
     }
 
+    /// <summary>
+    /// Generates a diagnostic for the selected exception.
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="id"></param>
+    /// <param name="exception"></param>
+    /// <param name="prefix"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public static void ReportException(
         this SourceProductionContext context,
         string id,

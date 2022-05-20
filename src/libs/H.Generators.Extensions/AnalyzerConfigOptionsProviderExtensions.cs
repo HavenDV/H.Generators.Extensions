@@ -3,8 +3,19 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace H.Generators.Extensions;
 
+/// <summary>
+/// 
+/// </summary>
 public static class AnalyzerConfigOptionsProviderExtensions
 {
+    /// <summary>
+    /// Returns the value of the global option, or null if the option is missing or an empty string.
+    /// </summary>
+    /// <param name="provider"></param>
+    /// <param name="name"></param>
+    /// <param name="prefix"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
     public static string? GetGlobalOption(
         this AnalyzerConfigOptionsProvider provider,
         string name,
@@ -26,6 +37,15 @@ public static class AnalyzerConfigOptionsProviderExtensions
             : null;
     }
 
+    /// <summary>
+    /// Returns the value of the <see cref="AdditionalText"/> option, or null if the option is missing or an empty string.
+    /// </summary>
+    /// <param name="provider"></param>
+    /// <param name="text"></param>
+    /// <param name="name"></param>
+    /// <param name="prefix"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
     public static string? GetOption(
         this AnalyzerConfigOptionsProvider provider,
         AdditionalText text,
@@ -48,6 +68,14 @@ public static class AnalyzerConfigOptionsProviderExtensions
             : null;
     }
 
+    /// <summary>
+    /// Returns the value of the global option, or throws an <see cref="InvalidOperationException"/>.
+    /// </summary>
+    /// <param name="provider"></param>
+    /// <param name="name"></param>
+    /// <param name="prefix"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
     public static string GetRequiredGlobalOption(
         this AnalyzerConfigOptionsProvider provider,
         string name,
@@ -58,6 +86,15 @@ public static class AnalyzerConfigOptionsProviderExtensions
             throw new InvalidOperationException($"{name} is required.");
     }
 
+    /// <summary>
+    /// Returns the value of the <see cref="AdditionalText"/> option, or throws an <see cref="InvalidOperationException"/>.
+    /// </summary>
+    /// <param name="provider"></param>
+    /// <param name="text"></param>
+    /// <param name="name"></param>
+    /// <param name="prefix"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
     public static string GetRequiredOption(
         this AnalyzerConfigOptionsProvider provider,
         AdditionalText text,
