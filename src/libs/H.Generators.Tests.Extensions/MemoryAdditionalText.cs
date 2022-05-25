@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
-namespace H.Generators.IntegrationTests;
+namespace H.Generators.Tests.Extensions;
 
 /// <summary>
 /// 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace H.Generators.IntegrationTests;
+namespace H.Generators.Tests.Extensions;
 
 /// <summary>
 /// 

@@ -1,4 +1,4 @@
-﻿namespace H.Generators;
+﻿namespace H.Generators.Extensions;
 
 /// <summary>
 /// 
