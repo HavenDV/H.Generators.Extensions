@@ -29,9 +29,9 @@
       <TargetPathWithTargetPlatformMoniker Include="@(ResolvedCompileFileDefinitionsWithoutSystem)" IncludeRuntimeDependency="false" />
     </ItemGroup>
 
-    <Message Text="Added generation time reference: %(ResolvedCompileFileDefinitionsWithoutSystem.Identity)" Importance="high" Condition="$(NetStandard20Only)"/>
-    <Message Text="Recognized dependencies that do not use netstandard2.0. All dependencies will be added including System and Microsoft" Importance="high" Condition="!$(NetStandard20Only)"/>
-    <Message Text="Added generation time reference: %(ResolvedCompileFileDefinitions.Identity)" Importance="high" Condition="!$(NetStandard20Only)"/>
+    <Message Text="Added generation time reference: %(ResolvedCompileFileDefinitionsWithoutSystem.Identity)" Importance="high" Condition="$(NetStandard20Only) AND $(_ResolvedCompileFileDefinitions) != ''"/>
+    <Message Text="Recognized dependencies that do not use netstandard2.0. All dependencies will be added including System and Microsoft" Importance="high" Condition="!$(NetStandard20Only) AND $(_ResolvedCompileFileDefinitions) != ''"/>
+    <Message Text="Added generation time reference: %(ResolvedCompileFileDefinitions.Identity)" Importance="high" Condition="!$(NetStandard20Only) AND $(_ResolvedCompileFileDefinitions) != ''"/>
   </Target>
 
 </Project>
