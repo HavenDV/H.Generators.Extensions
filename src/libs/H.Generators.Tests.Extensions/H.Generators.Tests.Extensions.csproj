@@ -9,7 +9,6 @@
     <Description>A set of extensions to simplify the test code of generators.
 $(PACKAGE_RELEASE_NOTES)</Description>
     <PackageTags>generator;source generator;extensions;settings;tests;test</PackageTags>
-    <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
 
   <ItemGroup>
