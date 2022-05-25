@@ -12,7 +12,9 @@ $(PACKAGE_RELEASE_NOTES)</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <None Include="build/$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <None Include="buildMultiTargeting/$(AssemblyName).props" Pack="true" PackagePath="buildMultiTargeting" />
+    <None Include="buildTransitive/$(AssemblyName).props" Pack="true" PackagePath="buildTransitive" />
   </ItemGroup>
 
   <ItemGroup>
