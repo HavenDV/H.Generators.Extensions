@@ -19,3 +19,9 @@ to the NuGet package and Integration tests.
 
 ### EnumerableExtensions 
 - `values.Inject()`
+
+# H.Generators.Tests.Extensions
+
+- `DictionaryAnalyzerConfigOptions`
+- `DictionaryAnalyzerConfigOptionsProvider`
+- `MemoryAdditionalText`

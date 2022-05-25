@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "H.Generators.Tests.Extensions", "src\libs\H.Generators.Tests.Extensions\H.Generators.Tests.Extensions.csproj", "{70E3A93F-042C-4A07-8DC2-ECEC7594DD3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,12 +32,17 @@ Global
 		{26C3A5FC-0BEB-4E96-8988-340B77D6C76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26C3A5FC-0BEB-4E96-8988-340B77D6C76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26C3A5FC-0BEB-4E96-8988-340B77D6C76E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E3A93F-042C-4A07-8DC2-ECEC7594DD3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E3A93F-042C-4A07-8DC2-ECEC7594DD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E3A93F-042C-4A07-8DC2-ECEC7594DD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E3A93F-042C-4A07-8DC2-ECEC7594DD3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{26C3A5FC-0BEB-4E96-8988-340B77D6C76E} = {D86F7896-0ED8-4863-A314-AD171657449A}
+		{70E3A93F-042C-4A07-8DC2-ECEC7594DD3C} = {D86F7896-0ED8-4863-A314-AD171657449A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {18CE66D4-6213-4ECA-B87A-57CA6A0B5C4E}
