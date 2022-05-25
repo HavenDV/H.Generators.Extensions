@@ -8,6 +8,13 @@ namespace H.Generators.Extensions;
 /// </summary>
 public static class AnalyzerConfigOptionsProviderExtensions
 {
+    private static string GetFullName(string name, string? prefix = null)
+    {
+        return prefix == null
+            ? name
+            : $"{prefix}_{name}";
+    }
+
     /// <summary>
     /// Returns the value of the global option, or null if the option is missing or an empty string.
     /// </summary>
@@ -24,13 +31,9 @@ public static class AnalyzerConfigOptionsProviderExtensions
         provider = provider ?? throw new ArgumentNullException(nameof(provider));
         name = name ?? throw new ArgumentNullException(nameof(name));
 
-        if (prefix != null)
-        {
-            name = $"{prefix}_{name}";
-        }
 
         return provider.GlobalOptions.TryGetValue(
-            $"build_property.{name}",
+            $"build_property.{GetFullName(name, prefix)}",
             out var result) &&
             !string.IsNullOrWhiteSpace(result)
             ? result
@@ -55,13 +58,8 @@ public static class AnalyzerConfigOptionsProviderExtensions
         provider = provider ?? throw new ArgumentNullException(nameof(provider));
         name = name ?? throw new ArgumentNullException(nameof(name));
 
-        if (prefix != null)
-        {
-            name = $"{prefix}_{name}";
-        }
-
         return provider.GetOptions(text).TryGetValue(
-            $"build_metadata.AdditionalFiles.{name}",
+            $"build_metadata.AdditionalFiles.{GetFullName(name, prefix)}",
             out var result) &&
             !string.IsNullOrWhiteSpace(result)
             ? result
@@ -83,7 +81,7 @@ public static class AnalyzerConfigOptionsProviderExtensions
     {
         return
             provider.GetGlobalOption(name, prefix) ??
-            throw new InvalidOperationException($"{name} is required.");
+            throw new InvalidOperationException($"{GetFullName(name, prefix)} MSBuild property is required.");
     }
 
     /// <summary>
@@ -103,6 +101,6 @@ public static class AnalyzerConfigOptionsProviderExtensions
     {
         return
             provider.GetOption(text, name, prefix) ??
-            throw new InvalidOperationException($"{name} is required.");
+            throw new InvalidOperationException($"{GetFullName(name, prefix)} metadata for AdditionalText is required.");
     }
 }
