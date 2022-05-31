@@ -11,7 +11,33 @@
   -->
   <Target Name="AddGenerationTimeReferences" AfterTargets="ResolvePackageDependenciesForBuild">
     <ItemGroup>
-      <ResolvedCompileFileDefinitionsWithoutSystem Include="%(ResolvedCompileFileDefinitions.Identity)" Condition="!$([System.String]::new(%(ResolvedCompileFileDefinitions.Filename)).StartsWith('System')) AND !$([System.String]::new(%(ResolvedCompileFileDefinitions.Filename)).StartsWith('Microsoft'))" />
+      <_SystemLibs Include="Microsoft.Bcl.AsyncInterfaces" />
+      <_SystemLibs Include="Microsoft.CodeAnalysis" />
+      <_SystemLibs Include="Microsoft.CodeAnalysis.CSharp" />
+      <_SystemLibs Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+      <_SystemLibs Include="Microsoft.CodeAnalysis.Workspaces" />
+      <_SystemLibs Include="System.Buffers" />
+      <_SystemLibs Include="System.Collections.Immutable" />
+      <_SystemLibs Include="System.Composition.AttributedModel" />
+      <_SystemLibs Include="System.Composition.Convention" />
+      <_SystemLibs Include="System.Composition.Hosting" />
+      <_SystemLibs Include="System.Composition.Runtime" />
+      <_SystemLibs Include="System.Composition.TypedParts" />
+      <_SystemLibs Include="System.IO.Pipelines" />
+      <_SystemLibs Include="System.Memory" />
+      <_SystemLibs Include="System.Numerics.Vectors" />
+      <_SystemLibs Include="System.Reflection.Metadata" />
+      <_SystemLibs Include="System.Runtime.CompilerServices.Unsafe" />
+      <_SystemLibs Include="System.Text.Encoding.CodePages" />
+      <_SystemLibs Include="System.Threading.Tasks.Extensions" />
+    </ItemGroup>
+
+    <PropertyGroup>
+      <_SystemLibsProperty>@(_SystemLibs)</_SystemLibsProperty>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ResolvedCompileFileDefinitionsWithoutSystem Include="%(ResolvedCompileFileDefinitions.Identity)" Condition="!$(_SystemLibsProperty.Contains(%(ResolvedCompileFileDefinitions.Filename)))" />
     </ItemGroup>
 
     <PropertyGroup>
