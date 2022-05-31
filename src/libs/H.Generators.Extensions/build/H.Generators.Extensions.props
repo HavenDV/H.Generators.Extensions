@@ -26,7 +26,8 @@
 
     <ItemGroup Condition="!$(NetStandard20Only)">
       <None Include="@(ResolvedCompileFileDefinitions)" Pack="true" PackagePath="analyzers/dotnet/cs" />
-      <TargetPathWithTargetPlatformMoniker Include="@(ResolvedCompileFileDefinitions)" IncludeRuntimeDependency="false" />
+      <!-- No need to include base dependencies here -->
+      <TargetPathWithTargetPlatformMoniker Include="@(ResolvedCompileFileDefinitionsWithoutSystem)" IncludeRuntimeDependency="false" />
     </ItemGroup>
 
     <Message Text="Added generation time reference: %(ResolvedCompileFileDefinitionsWithoutSystem.Identity)" Importance="high" Condition="$(NetStandard20Only) AND $(_ResolvedCompileFileDefinitions) != ''"/>
