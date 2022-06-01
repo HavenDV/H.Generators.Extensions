@@ -82,7 +82,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ResolvedCompileFileDefinitionsWithoutSystem Include="%(ResolvedCompileFileDefinitions.Identity)" Condition="!$(_SystemLibsProperty.Contains(%(ResolvedCompileFileDefinitions.Filename)))" />
+      <ResolvedCompileFileDefinitionsWithoutSystem Include="%(ResolvedCompileFileDefinitions.Identity)" Condition="$(_SystemLibsProperty) != '' AND !$(_SystemLibsProperty.Contains(%(ResolvedCompileFileDefinitions.Filename)))" />
     </ItemGroup>
 
     <PropertyGroup>
