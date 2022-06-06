@@ -18,6 +18,10 @@ $(PACKAGE_RELEASE_NOTES)</Description>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConventionalCommitsGitInfo" Version="0.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0" />
   </ItemGroup>
 

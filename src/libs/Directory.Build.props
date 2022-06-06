@@ -21,10 +21,14 @@
     <AssemblyOriginatorKeyFile>$(SolutionDir)src\libs\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
+  <Target Name="SetSemanticVersionSettings" BeforeTargets="SetSemanticVersion">
+    <PropertyGroup>
+      <ConventionalCommitsGitInfo_BaseVersion>1.0.0</ConventionalCommitsGitInfo_BaseVersion>
+      <ConventionalCommitsGitInfo_BaseCommit>08f2ad963d234ca74eff1d3bc0d8597859ec0cc8</ConventionalCommitsGitInfo_BaseCommit>
+    </PropertyGroup>
+  </Target>
+
   <PropertyGroup Label="Nuget">
-    <BUILD_NUMBER Condition="'$(BUILD_NUMBER)' == ''">1</BUILD_NUMBER>
-    <Version>1.0.$(BUILD_NUMBER)</Version>
-    <PackageReleaseNotes>$(PACKAGE_RELEASE_NOTES)</PackageReleaseNotes>
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>havendv</Authors>
