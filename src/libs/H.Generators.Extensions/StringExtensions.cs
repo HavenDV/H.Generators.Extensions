@@ -38,4 +38,23 @@ public static class StringExtensions
             _ => input[0].ToString().ToLower() + input.Substring(1),
         };
     }
+
+    /// <summary>
+    /// Removes blank lines where there are only spaces.
+    /// Used to preserve formatting in code where lines of code may be missing based on conditions.
+    /// Just return a string with spaces to remove it.
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string RemoveBlankLinesWhereOnlyWhitespaces(this string text)
+    {
+        text = text ?? throw new ArgumentNullException(nameof(text));
+
+        return string.Join(
+            separator: Environment.NewLine,
+            values: text
+                .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
+                .Where(static line => line.Length == 0 || !line.All(char.IsWhiteSpace)));
+    }
 }

@@ -16,12 +16,12 @@ to the NuGet package and Integration tests.
 ### StringExtensions 
 - `name.ToPropertyName()`
 - `name.ToParameterName()`
+- `text.RemoveBlankLinesWhereOnlyWhitespaces()`
 
 ### EnumerableExtensions 
 - `values.Inject()`
 
 # H.Generators.Tests.Extensions
-
 - `DictionaryAnalyzerConfigOptions`
 - `DictionaryAnalyzerConfigOptionsProvider`
 - `MemoryAdditionalText`
