@@ -3,6 +3,14 @@ A set of extensions to simplify the code of generators.
 In addition to extensions, this library also adds a .props file to automatically add your generation-time dependencies 
 to the NuGet package and Integration tests.
 
+## Install
+The usage is pretty simple:
+```xml
+<PackageReference Include="H.Generators.Extensions" Version="1.4.2" PrivateAssets="all" />
+```
+I want to note that PrivateAssets="all" is required to rule out some issues.
+
+## Extensions
 ### AnalyzerConfigOptionsProviderExtensions 
 - `options.GetGlobalOption(string name)`
 - `options.GetOption(AdditionalText, string name)`
@@ -28,3 +36,7 @@ to the NuGet package and Integration tests.
 - `DictionaryAnalyzerConfigOptions`
 - `DictionaryAnalyzerConfigOptionsProvider`
 - `MemoryAdditionalText`
+
+## Support
+You can get answers to your questions in my discord support channel:  
+https://discord.gg/g8u2t9dKgE
