@@ -57,4 +57,43 @@ public static class StringExtensions
                 .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
                 .Where(static line => line.Length == 0 || !line.All(char.IsWhiteSpace)));
     }
+
+    /// <summary>
+    /// Returns the namespace for the selected type's fully qualified name.
+    /// </summary>
+    /// <param name="fullTypeName"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string ExtractNamespace(this string fullTypeName)
+    {
+        fullTypeName = fullTypeName ?? throw new ArgumentNullException(nameof(fullTypeName));
+
+        return fullTypeName.Substring(0, fullTypeName.LastIndexOf('.'));
+    }
+
+    /// <summary>
+    /// Returns the simple name(without namespace) for the selected type's fully qualified name.
+    /// </summary>
+    /// <param name="fullTypeName"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string ExtractSimpleName(this string fullTypeName)
+    {
+        fullTypeName = fullTypeName ?? throw new ArgumentNullException(nameof(fullTypeName));
+
+        return fullTypeName.Substring(fullTypeName.LastIndexOf('.') + 1);
+    }
+
+    /// <summary>
+    /// Returns selected type's fully qualified name with 'global::' prefix.
+    /// </summary>
+    /// <param name="fullTypeName"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string WithGlobalPrefix(this string fullTypeName)
+    {
+        fullTypeName = fullTypeName ?? throw new ArgumentNullException(nameof(fullTypeName));
+
+        return $"global::{fullTypeName}";
+    }
 }

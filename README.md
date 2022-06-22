@@ -17,6 +17,9 @@ to the NuGet package and Integration tests.
 - `name.ToPropertyName()`
 - `name.ToParameterName()`
 - `text.RemoveBlankLinesWhereOnlyWhitespaces()`
+- `fullTypeName.ExtractNamespace()`
+- `fullTypeName.ExtractSimpleName()`
+- `fullTypeName.WithGlobalPrefix()`
 
 ### EnumerableExtensions 
 - `values.Inject()`
