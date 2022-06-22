@@ -9,7 +9,7 @@
     This automatically adds explicit and transient dependencies so that they are available at the time the generator is executed. 
     Splitting to .netstandard 2.0 only is needed because of this issue: https://github.com/dotnet/roslyn/issues/60004
   -->
-  <Target Name="AddGenerationTimeReferences" AfterTargets="ResolvePackageDependenciesForBuild">
+  <Target Name="AddGenerationTimeReferences" DependsOnTargets="ResolveReferences" AfterTargets="ResolvePackageDependenciesForBuild">
     <ItemGroup>
       <_SystemLibs Include="Microsoft.Bcl.AsyncInterfaces" />
       <_SystemLibs Include="Microsoft.CodeAnalysis" />
