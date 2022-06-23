@@ -103,4 +103,19 @@ public static class AnalyzerConfigOptionsProviderExtensions
             provider.GetOption(text, name, prefix) ??
             throw new InvalidOperationException($"{GetFullName(name, prefix)} metadata for AdditionalText is required.");
     }
+
+    /// <summary>
+    /// Returns true if generator running in design-time.
+    /// </summary>
+    /// <param name="provider"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
+    public static bool IsDesignTime(this AnalyzerConfigOptionsProvider provider)
+    {
+        var isBuildingProjectValue = provider.GetGlobalOption("BuildingProject"); // legacy projects
+        var isDesignTimeBuildValue = provider.GetGlobalOption("DesignTimeBuild"); // sdk-style projects
+
+        return string.Equals(isBuildingProjectValue, "false", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(isDesignTimeBuildValue, "true", StringComparison.OrdinalIgnoreCase);
+    }
 }
