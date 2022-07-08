@@ -16,6 +16,28 @@ I want to note that PrivateAssets="all" is required to rule out some issues.
 - `options.GetOption(AdditionalText, string name)`
 - `options.GetRequiredGlobalOption(string name)`
 - `options.GetRequiredOption(AdditionalText, string name)`
+- `options.TryRecognizePlatform(string prefix)`
+- `options.RecognizePlatform(string prefix)`
+To recognize the platform, you will need to add the following code to your %PackageId%.props(In this case, the passed prefix will be equal to %PackageId%):
+```xml
+<Project>
+
+  <ItemGroup>
+    <CompilerVisibleProperty Include="%PackageId%_DefineConstants"/>
+    <CompilerVisibleProperty Include="UseWPF"/>
+    <CompilerVisibleProperty Include="UseWinUI"/>
+  </ItemGroup>
+
+  <Target Name="CreateDefineConstants" BeforeTargets="GenerateMSBuildEditorConfigFileShouldRun;GenerateMSBuildEditorConfigFileCore">
+
+    <PropertyGroup>
+      <%PackageId%_DefineConstants>$(DefineConstants.Replace(';',','))</%PackageId%_DefineConstants>
+    </PropertyGroup>
+
+  </Target>
+  
+</Project>
+```
 
 ### SourceProductionContextExtensions 
 - `context.AddTextSource(string hintName, string text)`
