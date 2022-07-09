@@ -34,4 +34,9 @@ public enum Platform
     /// AvaloniaUI.
     /// </summary>
     Avalonia,
+
+    /// <summary>
+    /// MAUI.
+    /// </summary>
+    MAUI,
 }

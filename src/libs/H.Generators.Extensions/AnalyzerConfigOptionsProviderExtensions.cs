@@ -132,19 +132,21 @@ public static class AnalyzerConfigOptionsProviderExtensions
         var constants = provider.GetGlobalOption("DefineConstants", prefix: prefix) ?? string.Empty;
         var useWpf = bool.Parse(provider.GetGlobalOption("UseWPF") ?? bool.FalseString) || constants.Contains("HAS_WPF");
         var useWinUI = bool.Parse(provider.GetGlobalOption("UseWinUI") ?? bool.FalseString) || constants.Contains("HAS_WINUI");
+        var useMaui = bool.Parse(provider.GetGlobalOption("UseMaui") ?? bool.FalseString) || constants.Contains("HAS_MAUI");
         var useUwp = constants.Contains("WINDOWS_UWP") || constants.Contains("HAS_UWP");
         var useUno = constants.Contains("HAS_UNO");
         var useUnoWinUI = constants.Contains("HAS_UNO_WINUI") || (constants.Contains("HAS_UNO") && constants.Contains("HAS_WINUI"));
         var useAvalonia = constants.Contains("HAS_AVALONIA");
 
-        return (useWpf, useUwp, useWinUI, useUno, useUnoWinUI, useAvalonia) switch
+        return (useWpf, useUwp, useWinUI, useUno, useUnoWinUI, useAvalonia, useMaui) switch
         {
-            (_, _, _, _, _, true) => Platform.Avalonia,
-            (_, _, _, _, true, _) => Platform.UnoWinUI,
-            (_, _, _, true, _, _) => Platform.Uno,
-            (_, _, true, _, _, _) => Platform.WinUI,
-            (_, true, _, _, _, _) => Platform.UWP,
-            (true, _, _, _, _, _) => Platform.WPF,
+            (_, _, _, _, _, _, true) => Platform.MAUI,
+            (_, _, _, _, _, true, _) => Platform.Avalonia,
+            (_, _, _, _, true, _, _) => Platform.UnoWinUI,
+            (_, _, _, true, _, _, _) => Platform.Uno,
+            (_, _, true, _, _, _, _) => Platform.WinUI,
+            (_, true, _, _, _, _, _) => Platform.UWP,
+            (true, _, _, _, _, _, _) => Platform.WPF,
             _ => null,
         };
     }
@@ -162,6 +164,6 @@ public static class AnalyzerConfigOptionsProviderExtensions
             provider.TryRecognizePlatform(prefix) ??
             throw new InvalidOperationException(@"Platform is not recognized.
 You can explicitly specify the platform by setting one of the following constants in your project:
-HAS_WPF, HAS_WINUI, HAS_UWP, HAS_UNO, HAS_UNO_WINUI, HAS_AVALONIA");
+HAS_WPF, HAS_WINUI, HAS_UWP, HAS_UNO, HAS_UNO_WINUI, HAS_AVALONIA, HAS_MAUI");
     }
 }

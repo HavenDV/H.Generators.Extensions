@@ -26,6 +26,7 @@ To recognize the platform, you will need to add the following code to your %Pack
     <CompilerVisibleProperty Include="%PackageId%_DefineConstants"/>
     <CompilerVisibleProperty Include="UseWPF"/>
     <CompilerVisibleProperty Include="UseWinUI"/>
+    <CompilerVisibleProperty Include="UseMaui"/>
   </ItemGroup>
 
   <Target Name="CreateDefineConstants" BeforeTargets="GenerateMSBuildEditorConfigFileShouldRun;GenerateMSBuildEditorConfigFileCore">
