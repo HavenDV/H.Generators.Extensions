@@ -87,7 +87,8 @@
     </ItemGroup>
 
     <PropertyGroup>
-      <NetStandard20Only>!$(ResolvedCompileFileDefinitionsWithoutSystem.Contains('netstandard1.'))</NetStandard20Only>
+      <_ResolvedCompileFileDefinitionsWithoutSystem>@(ResolvedCompileFileDefinitionsWithoutSystem)</_ResolvedCompileFileDefinitionsWithoutSystem>
+      <NetStandard20Only>$(_ResolvedCompileFileDefinitionsWithoutSystem) == '' OR !$(_ResolvedCompileFileDefinitionsWithoutSystem.Contains('netstandard1.'))</NetStandard20Only>
     </PropertyGroup>
 
     <ItemGroup Condition="$(NetStandard20Only)">
