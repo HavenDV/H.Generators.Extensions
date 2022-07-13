@@ -12,7 +12,7 @@ $(PACKAGE_RELEASE_NOTES)</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.0" />
   </ItemGroup>
 
 </Project>
