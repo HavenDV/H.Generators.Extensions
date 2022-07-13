@@ -80,12 +80,15 @@
     <PropertyGroup>
       <_SystemLibsProperty>@(_SystemLibs)</_SystemLibsProperty>
       <_ResolvedCompileFileDefinitions>@(ResolvedCompileFileDefinitions)</_ResolvedCompileFileDefinitions>
-      <NetStandard20Only>!$(_ResolvedCompileFileDefinitions.Contains('netstandard1.'))</NetStandard20Only>
     </PropertyGroup>
 
     <ItemGroup>
       <ResolvedCompileFileDefinitionsWithoutSystem Include="%(ResolvedCompileFileDefinitions.Identity)" Condition="$(_SystemLibsProperty) != '' AND $(_ResolvedCompileFileDefinitions) != '' AND !$(_SystemLibsProperty.Contains(%(ResolvedCompileFileDefinitions.Filename)))" />
     </ItemGroup>
+
+    <PropertyGroup>
+      <NetStandard20Only>!$(ResolvedCompileFileDefinitionsWithoutSystem.Contains('netstandard1.'))</NetStandard20Only>
+    </PropertyGroup>
 
     <ItemGroup Condition="$(NetStandard20Only)">
       <None Include="@(ResolvedCompileFileDefinitionsWithoutSystem)" Pack="true" PackagePath="analyzers/dotnet/cs" />
