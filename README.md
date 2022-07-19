@@ -48,6 +48,7 @@ To recognize the platform, you will need to add the following code to your %Pack
 - `name.ToPropertyName()`
 - `name.ToParameterName()`
 - `text.RemoveBlankLinesWhereOnlyWhitespaces()`
+- `text.NormalizeLineEndings(string? newLine = null)`
 - `fullTypeName.ExtractNamespace()`
 - `fullTypeName.ExtractSimpleName()`
 - `fullTypeName.WithGlobalPrefix()`

@@ -52,10 +52,35 @@ public static class StringExtensions
         text = text ?? throw new ArgumentNullException(nameof(text));
 
         return string.Join(
-            separator: Environment.NewLine,
+            separator: "\n",
             values: text
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
+                .NormalizeLineEndings()
+                .Split(new[] { '\n' }, StringSplitOptions.None)
                 .Where(static line => line.Length == 0 || !line.All(char.IsWhiteSpace)));
+    }
+
+    /// <summary>
+    /// Normalizes line endings to '\n' or your endings.
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="newLine">'\n' by default</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string NormalizeLineEndings(
+        this string text,
+        string? newLine = null)
+    {
+        text = text ?? throw new ArgumentNullException(nameof(text));
+
+        var newText = text
+            .Replace("\r\n", "\n")
+            .Replace("\r", "\n");
+        if (newLine != null)
+        {
+            newText = newText.Replace("\n", newLine);
+        }
+
+        return newText;
     }
 
     /// <summary>
