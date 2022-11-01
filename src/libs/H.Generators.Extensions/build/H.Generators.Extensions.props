@@ -86,7 +86,7 @@
 
     <ItemGroup>
       <ResolvedCompileFileDefinitionsWithoutSystem Include="%(ResolvedCompileFileDefinitions.Identity)" Condition="$(_SystemLibsProperty) != '' AND $(_ResolvedCompileFileDefinitions) != '' AND !$(_SystemLibsProperty.Contains(%(ResolvedCompileFileDefinitions.Filename)))" />
-	  <ResolvedCompileFileDefinitionsWithoutSystemNonRef Include="@(ResolvedCompileFileDefinitionsWithoutSystem->Replace('\ref\', '\lib\'))" />
+	  <ResolvedCompileFileDefinitionsWithoutSystemNonRef Include="@(ResolvedCompileFileDefinitionsWithoutSystem->Replace('\ref\', '\lib\')->Replace('/ref/', '/lib/'))" />
     </ItemGroup>
 
     <ItemGroup>
