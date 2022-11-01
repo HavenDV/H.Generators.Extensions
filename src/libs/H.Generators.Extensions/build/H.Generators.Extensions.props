@@ -86,14 +86,15 @@
 
     <ItemGroup>
       <ResolvedCompileFileDefinitionsWithoutSystem Include="%(ResolvedCompileFileDefinitions.Identity)" Condition="$(_SystemLibsProperty) != '' AND $(_ResolvedCompileFileDefinitions) != '' AND !$(_SystemLibsProperty.Contains(%(ResolvedCompileFileDefinitions.Filename)))" />
+	  <ResolvedCompileFileDefinitionsWithoutSystemNonRef Include="@(ResolvedCompileFileDefinitionsWithoutSystem->Replace('\ref\', '\lib\')->Replace('/ref/', '/lib/'))" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="@(ResolvedCompileFileDefinitionsWithoutSystem)" Pack="true" PackagePath="analyzers/dotnet/cs" />
-      <TargetPathWithTargetPlatformMoniker Include="@(ResolvedCompileFileDefinitionsWithoutSystem)" IncludeRuntimeDependency="false" />
+      <None Include="@(ResolvedCompileFileDefinitionsWithoutSystemNonRef)" Pack="true" PackagePath="analyzers/dotnet/cs" />
+      <TargetPathWithTargetPlatformMoniker Include="@(ResolvedCompileFileDefinitionsWithoutSystemNonRef)" IncludeRuntimeDependency="false" />
     </ItemGroup>
 
-    <Message Text="Added generation time reference: %(ResolvedCompileFileDefinitionsWithoutSystem.Identity)" Importance="high" Condition="$(_ResolvedCompileFileDefinitions) != ''"/>
+    <Message Text="Added generation time reference: %(ResolvedCompileFileDefinitionsWithoutSystemNonRef.Identity)" Importance="high" Condition="$(_ResolvedCompileFileDefinitions) != ''"/>
   </Target>
 
 </Project>
