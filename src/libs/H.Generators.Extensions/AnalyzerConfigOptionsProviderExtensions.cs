@@ -18,6 +18,27 @@ public static class AnalyzerConfigOptionsProviderExtensions
     /// <summary>
     /// Returns the value of the global option, or null if the option is missing or an empty string.
     /// </summary>
+    /// <param name="options"></param>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string? GetOption(
+        this AnalyzerConfigOptions options,
+        string key)
+    {
+        options = options ?? throw new ArgumentNullException(nameof(options));
+        key = key ?? throw new ArgumentNullException(nameof(key));
+
+        return
+            options.TryGetValue(key, out var result) &&
+            !string.IsNullOrWhiteSpace(result)
+                ? result
+                : null;
+    }
+
+    /// <summary>
+    /// Returns the value of the global option, or null if the option is missing or an empty string.
+    /// </summary>
     /// <param name="provider"></param>
     /// <param name="name"></param>
     /// <param name="prefix"></param>
@@ -31,12 +52,7 @@ public static class AnalyzerConfigOptionsProviderExtensions
         provider = provider ?? throw new ArgumentNullException(nameof(provider));
         name = name ?? throw new ArgumentNullException(nameof(name));
 
-        return provider.GlobalOptions.TryGetValue(
-            $"build_property.{GetFullName(name, prefix)}",
-            out var result) &&
-            !string.IsNullOrWhiteSpace(result)
-            ? result
-            : null;
+        return provider.GlobalOptions.GetOption($"build_property.{GetFullName(name, prefix)}");
     }
 
     /// <summary>
@@ -45,6 +61,7 @@ public static class AnalyzerConfigOptionsProviderExtensions
     /// <param name="provider"></param>
     /// <param name="text"></param>
     /// <param name="name"></param>
+    /// <param name="group">Default: AdditionalFiles</param>
     /// <param name="prefix"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
@@ -52,17 +69,14 @@ public static class AnalyzerConfigOptionsProviderExtensions
         this AnalyzerConfigOptionsProvider provider,
         AdditionalText text,
         string name,
+        string? group = null,
         string? prefix = null)
     {
         provider = provider ?? throw new ArgumentNullException(nameof(provider));
         name = name ?? throw new ArgumentNullException(nameof(name));
-
-        return provider.GetOptions(text).TryGetValue(
-            $"build_metadata.AdditionalFiles.{GetFullName(name, prefix)}",
-            out var result) &&
-            !string.IsNullOrWhiteSpace(result)
-            ? result
-            : null;
+        group ??= "AdditionalFiles";
+        
+        return provider.GetOptions(text).GetOption($"build_metadata.{group}.{GetFullName(name, prefix)}");
     }
 
     /// <summary>
