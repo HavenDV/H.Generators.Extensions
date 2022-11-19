@@ -77,6 +77,10 @@
       
       <!-- Fix for Reference assemblies should not be loaded for execution.  They can only be loaded in the Reflection-only loader context. (0x80131058)) -->
       <_SystemLibs Include="System.Dynamic.Runtime" />
+      
+      <!-- https://github.com/HavenDV/H.Generators.Extensions/issues/3 -->
+      <_SystemLibs Include="Microsoft.CSharp" />
+      <_SystemLibs Include="System.Runtime.Serialization.Primitives" />
     </ItemGroup>
 
     <PropertyGroup>
