@@ -35,6 +35,10 @@ public static class StringExtensions
         {
             null => throw new ArgumentNullException(nameof(input)),
             "" => throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input)),
+            "Event" => "@event",
+            "event" => "@event",
+            "Namespace" => "@namespace",
+            "namespace" => "@namespace",
             _ => input[0].ToString().ToLower() + input.Substring(1),
         };
     }
