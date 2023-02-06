@@ -60,6 +60,7 @@ To recognize the platform, you will need to add the following code to your %Pack
 - `DictionaryAnalyzerConfigOptions`
 - `DictionaryAnalyzerConfigOptionsProvider`
 - `MemoryAdditionalText`
+- `ImmutableArrayExtensions.NormalizeLocations`
 
 ## Support
 You can get answers to your questions in my discord support channel:  
