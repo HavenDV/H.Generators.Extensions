@@ -1,4 +1,6 @@
-﻿namespace H.Generators.Extensions;
+﻿using System.Globalization;
+
+namespace H.Generators.Extensions;
 
 /// <summary>
 /// 
@@ -18,7 +20,7 @@ public static class StringExtensions
         {
             null => throw new ArgumentNullException(nameof(input)),
             "" => throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input)),
-            _ => input[0].ToString().ToUpper() + input.Substring(1),
+            _ => input[0].ToString().ToUpper(CultureInfo.InvariantCulture) + input.Substring(1),
         };
     }
 
@@ -39,7 +41,9 @@ public static class StringExtensions
             "event" => "@event",
             "Namespace" => "@namespace",
             "namespace" => "@namespace",
-            _ => input[0].ToString().ToLower() + input.Substring(1),
+#pragma warning disable CA1308
+            _ => input[0].ToString().ToLower(CultureInfo.InvariantCulture) + input.Substring(1),
+#pragma warning restore CA1308
         };
     }
 
