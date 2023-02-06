@@ -2,7 +2,7 @@
 using System.Globalization;
 using Microsoft.CodeAnalysis;
 
-namespace H.Generators.Extensions;
+namespace H.Generators.Tests.Extensions;
 
 /// <summary>
 /// 
