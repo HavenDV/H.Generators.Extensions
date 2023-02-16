@@ -81,6 +81,10 @@
       <!-- https://github.com/HavenDV/H.Generators.Extensions/issues/3 -->
       <_SystemLibs Include="Microsoft.CSharp" />
       <_SystemLibs Include="System.Runtime.Serialization.Primitives" />
+      
+      <!-- https://discord.com/channels/988253265550532680/988253266393579583/1075854799821623346 -->
+      <_SystemLibs Include="System.ComponentModel" />
+      <_SystemLibs Include="System.Runtime.Serialization.Formatters" />
     </ItemGroup>
 
     <PropertyGroup>
