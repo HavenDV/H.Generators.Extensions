@@ -22,6 +22,7 @@
       <_SystemLibs Include="System.Composition.Hosting" />
       <_SystemLibs Include="System.Composition.Runtime" />
       <_SystemLibs Include="System.Composition.TypedParts" />
+      <_SystemLibs Include="System.ComponentModel" />
       <_SystemLibs Include="System.IO.Pipelines" />
       <_SystemLibs Include="System.Memory" />
       <_SystemLibs Include="System.Numerics.Vectors" />
@@ -62,6 +63,7 @@
       <_SystemLibs Include="System.Runtime.InteropServices" />
       <_SystemLibs Include="System.Runtime.InteropServices.RuntimeInformation" />
       <_SystemLibs Include="System.Runtime.Numerics" />
+      <_SystemLibs Include="System.Runtime.Serialization.Formatters" />
       <_SystemLibs Include="System.Security.Cryptography.Algorithms" />
       <_SystemLibs Include="System.Security.Cryptography.Encoding" />
       <_SystemLibs Include="System.Security.Cryptography.Primitives" />
