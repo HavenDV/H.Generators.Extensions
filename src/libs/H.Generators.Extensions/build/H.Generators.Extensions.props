@@ -22,7 +22,6 @@
       <_SystemLibs Include="System.Composition.Hosting" />
       <_SystemLibs Include="System.Composition.Runtime" />
       <_SystemLibs Include="System.Composition.TypedParts" />
-      <_SystemLibs Include="System.ComponentModel" />
       <_SystemLibs Include="System.IO.Pipelines" />
       <_SystemLibs Include="System.Memory" />
       <_SystemLibs Include="System.Numerics.Vectors" />
@@ -63,7 +62,6 @@
       <_SystemLibs Include="System.Runtime.InteropServices" />
       <_SystemLibs Include="System.Runtime.InteropServices.RuntimeInformation" />
       <_SystemLibs Include="System.Runtime.Numerics" />
-      <_SystemLibs Include="System.Runtime.Serialization.Formatters" />
       <_SystemLibs Include="System.Security.Cryptography.Algorithms" />
       <_SystemLibs Include="System.Security.Cryptography.Encoding" />
       <_SystemLibs Include="System.Security.Cryptography.Primitives" />
@@ -83,6 +81,10 @@
       <!-- https://github.com/HavenDV/H.Generators.Extensions/issues/3 -->
       <_SystemLibs Include="Microsoft.CSharp" />
       <_SystemLibs Include="System.Runtime.Serialization.Primitives" />
+      
+      <!-- https://discord.com/channels/988253265550532680/988253266393579583/1075854799821623346 -->
+      <_SystemLibs Include="System.ComponentModel" />
+      <_SystemLibs Include="System.Runtime.Serialization.Formatters" />
     </ItemGroup>
 
     <PropertyGroup>
