@@ -1,24 +1,24 @@
 ﻿namespace H.Generators;
 
 /// <summary>
-/// Platform enumeration for generators that are platform specific.
+/// Framework enumeration for generators that are platform specific.
 /// </summary>
-public enum Platform
+public enum Framework
 {
     /// <summary>
     /// Windows Presentation Foundation.
     /// </summary>
-    WPF,
+    Wpf,
 
     /// <summary>
     /// Universal Windows Platform.
     /// </summary>
-    UWP,
+    Uwp,
 
     /// <summary>
     /// WinUI 3/WindowsAppSDK.
     /// </summary>
-    WinUI,
+    WinUi,
 
     /// <summary>
     /// Uno.
@@ -28,7 +28,7 @@ public enum Platform
     /// <summary>
     /// Uno WinUI.
     /// </summary>
-    UnoWinUI,
+    UnoWinUi,
 
     /// <summary>
     /// AvaloniaUI.
@@ -38,5 +38,5 @@ public enum Platform
     /// <summary>
     /// MAUI.
     /// </summary>
-    MAUI,
+    Maui,
 }

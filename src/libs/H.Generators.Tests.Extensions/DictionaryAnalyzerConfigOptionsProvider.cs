@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace H.Generators.Tests.Extensions;
 
