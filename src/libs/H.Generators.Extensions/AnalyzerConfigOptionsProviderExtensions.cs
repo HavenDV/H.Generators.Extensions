@@ -139,7 +139,7 @@ public static class AnalyzerConfigOptionsProviderExtensions
     /// <param name="provider"></param>
     /// <param name="prefix">Prefix for your MSBuild DefineConstants property</param>
     /// <returns></returns>
-    public static Framework? TryRecognizeFramework(this AnalyzerConfigOptionsProvider provider, string prefix)
+    public static Framework TryRecognizeFramework(this AnalyzerConfigOptionsProvider provider, string prefix)
     {
         provider = provider ?? throw new ArgumentNullException(nameof(provider));
         prefix = prefix ?? throw new ArgumentNullException(nameof(prefix));
@@ -162,7 +162,7 @@ public static class AnalyzerConfigOptionsProviderExtensions
             (_, _, true, _, _, _, _) => Framework.WinUi,
             (_, true, _, _, _, _, _) => Framework.Uwp,
             (true, _, _, _, _, _, _) => Framework.Wpf,
-            _ => null,
+            _ => Framework.None,
         };
     }
 
@@ -175,9 +175,13 @@ public static class AnalyzerConfigOptionsProviderExtensions
     /// <exception cref="InvalidOperationException"></exception>
     public static Framework RecognizeFramework(this AnalyzerConfigOptionsProvider provider, string prefix)
     {
-        return
-            provider.TryRecognizeFramework(prefix) ??
-            throw new InvalidOperationException(@"Framework is not recognized.
+        var framework = provider.TryRecognizeFramework(prefix);
+        if (framework != Framework.None)
+        {
+            return framework;
+        }
+        
+        throw new InvalidOperationException(@"Framework is not recognized.
 You can explicitly specify the framework by setting one of the following constants in your project:
 HAS_WPF, HAS_WINUI, HAS_UWP, HAS_UNO, HAS_UNO_WINUI, HAS_AVALONIA, HAS_MAUI");
     }

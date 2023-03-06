@@ -6,6 +6,11 @@
 public enum Framework
 {
     /// <summary>
+    /// Not recognized.
+    /// </summary>
+    None,
+    
+    /// <summary>
     /// Windows Presentation Foundation.
     /// </summary>
     Wpf,
