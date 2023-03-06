@@ -41,7 +41,6 @@ To recognize the framework, you will need to add the following code to your %Pac
 ```
 
 ### SourceProductionContextExtensions 
-- `context.AddTextSource(string hintName, string text)`
 - `context.ReportException(string id, Exception)`
 
 ### StringExtensions 
