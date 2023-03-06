@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using System.Globalization;
 using Microsoft.CodeAnalysis;
 
 namespace H.Generators.Tests.Extensions;
@@ -20,24 +19,13 @@ public static class ImmutableArrayExtensions
         return diagnostics
             .Select(static diagnostic => diagnostic.Location.ToString().Contains('\\')
                 ? Diagnostic.Create(
-                    id: diagnostic.Id,
-                    category: diagnostic.Descriptor.Category,
-                    message: diagnostic.GetMessage(CultureInfo.InvariantCulture),
-                    severity: diagnostic.Severity,
-                    defaultSeverity: diagnostic.DefaultSeverity,
-                    isEnabledByDefault: diagnostic.Descriptor.IsEnabledByDefault,
-                    warningLevel: diagnostic.WarningLevel,
-                    title: diagnostic.Descriptor.Title,
-                    description: diagnostic.Descriptor.Description,
-                    isSuppressed: diagnostic.IsSuppressed,
-                    helpLink: diagnostic.Descriptor.HelpLinkUri,
+                    diagnostic.Descriptor,
                     location: Location.Create(
                         filePath: diagnostic.Location.GetLineSpan().Path.Replace('\\', '/'),
                         textSpan: diagnostic.Location.SourceSpan,
                         lineSpan: diagnostic.Location.GetLineSpan().Span),
                     additionalLocations: diagnostic.AdditionalLocations,
-                    properties: diagnostic.Properties,
-                    customTags: diagnostic.Descriptor.CustomTags)
+                    properties: diagnostic.Properties)
                 : diagnostic)
             .ToImmutableArray();
     }
