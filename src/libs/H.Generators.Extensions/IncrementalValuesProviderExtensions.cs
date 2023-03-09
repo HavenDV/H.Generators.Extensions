@@ -191,6 +191,26 @@ public static class IncrementalValuesProviderExtensions
         return source
             .SelectAndReportExceptions((x, _) => selector(x), initializationContext, id);
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="selector"></param>
+    /// <param name="initializationContext"></param>
+    /// <param name="id"></param>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <returns></returns>
+    public static IncrementalValueProvider<TResult> SelectAndReportExceptions<TSource, TResult>(
+        this IncrementalValueProvider<TSource> source,
+        Func<TSource, TResult> selector,
+        IncrementalGeneratorInitializationContext initializationContext,
+        string id = "SRE001")
+    {
+        return source
+            .SelectAndReportExceptions((x, _) => selector(x), initializationContext, id);
+    }
 
     /// <summary>
     /// Specific case after Combine with detect framework.
