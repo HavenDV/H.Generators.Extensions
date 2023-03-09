@@ -99,7 +99,6 @@ public static class IncrementalValuesProviderExtensions
 
     /// <summary>
     /// Specific case after Combine with detect framework.
-    /// Filters nullable values and select non-nullable values.
     /// </summary>
     /// <param name="source"></param>
     /// <param name="selector"></param>
@@ -108,15 +107,27 @@ public static class IncrementalValuesProviderExtensions
     /// <typeparam name="TResult"></typeparam>
     /// <typeparam name="TLeft"></typeparam>
     /// <returns></returns>
-    public static IncrementalValuesProvider<TResult>
-        SelectAndReportExceptions<TResult, TLeft>(
+    public static IncrementalValuesProvider<TResult> SelectAndReportExceptions<TResult, TLeft>(
             this IncrementalValuesProvider<(TLeft Left, Framework Right)> source,
-            Func<Framework, TLeft, TResult?> selector,
+            Func<Framework, TLeft, TResult> selector,
             IncrementalGeneratorInitializationContext context,
-            string id) where TResult : struct
+            string id = "SRE001")
     {
         return source
-            .SelectAndReportExceptions(x => selector(x.Right, x.Left), context, id)
+            .SelectAndReportExceptions(x => selector(x.Right, x.Left), context, id);
+    }
+
+    /// <summary>
+    /// Filters nullable values and select non-nullable values.
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="TSource"></typeparam>
+    /// <returns></returns>
+    public static IncrementalValuesProvider<TSource> WhereNotNull<TSource>(
+        this IncrementalValuesProvider<TSource?> source)
+        where TSource : struct
+    {
+        return source
             .Where(static x => x is not null)
             .Select(static (x, _) => x!.Value);
     }
@@ -141,9 +152,7 @@ public static class IncrementalValuesProviderExtensions
                         new DiagnosticDescriptor(
                             id: "TRF001",
                             title: "Framework is not recognized",
-                            messageFormat: @"Framework is not recognized.
-You can explicitly specify the framework by setting one of the following constants in your project:
-HAS_WPF, HAS_WINUI, HAS_UWP, HAS_UNO, HAS_UNO_WINUI, HAS_AVALONIA, HAS_MAUI",
+                            messageFormat: AnalyzerConfigOptionsProviderExtensions.FrameworkIsNotRecognized,
                             "Usage",
                             DiagnosticSeverity.Error,
                             true),

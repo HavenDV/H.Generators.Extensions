@@ -167,6 +167,13 @@ public static class AnalyzerConfigOptionsProviderExtensions
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    public const string FrameworkIsNotRecognized = @"Framework is not recognized.
+You can explicitly specify the framework by setting one of the following constants in your project:
+HAS_WPF, HAS_WINUI, HAS_UWP, HAS_UNO, HAS_UNO_WINUI, HAS_AVALONIA, HAS_MAUI";
+    
+    /// <summary>
     /// Recognizes the framework using MSBuild properties and constants or throws an exception.
     /// </summary>
     /// <param name="provider"></param>
@@ -181,8 +188,6 @@ public static class AnalyzerConfigOptionsProviderExtensions
             return framework;
         }
         
-        throw new InvalidOperationException(@"Framework is not recognized.
-You can explicitly specify the framework by setting one of the following constants in your project:
-HAS_WPF, HAS_WINUI, HAS_UWP, HAS_UNO, HAS_UNO_WINUI, HAS_AVALONIA, HAS_MAUI");
+        throw new InvalidOperationException(FrameworkIsNotRecognized);
     }
 }
