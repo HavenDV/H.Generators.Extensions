@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
 
 namespace H.Generators;
 
@@ -135,17 +136,14 @@ public static class IncrementalValuesProviderExtensions
     /// <summary>
     /// Returns <see cref="Framework.None"/> if the framework is not recognized and report diagnostic.
     /// </summary>
-    /// <param name="initializationContext"></param>
-    /// <param name="name"></param>
+    /// <param name="context"></param>
     /// <returns></returns>
-    public static IncrementalValueProvider<Framework> DetectFramework(
-        this IncrementalGeneratorInitializationContext initializationContext,
-        string name)
+    public static IncrementalValueProvider<Framework> DetectFramework(this IncrementalGeneratorInitializationContext context)
     {
-        var frameworkWithDiagnostic = initializationContext.AnalyzerConfigOptionsProvider
+        var frameworkWithDiagnostic = context.AnalyzerConfigOptionsProvider
             .Select<AnalyzerConfigOptionsProvider, (Framework Framework, Diagnostic? Diagnostic)>((options, _) =>
             {
-                var framework = options.TryRecognizeFramework(prefix: name);
+                var framework = options.TryRecognizeFramework();
 
                 var diagnostic = framework == Framework.None
                     ? Diagnostic.Create(
@@ -162,16 +160,16 @@ public static class IncrementalValuesProviderExtensions
                 return (Framework: framework, Diagnostic: diagnostic);
             });
         
-        initializationContext.RegisterSourceOutput(
+        context.RegisterSourceOutput(
             frameworkWithDiagnostic,
-            (context, tuple) =>
+            static (sourceProductionContext, tuple) =>
             {
                 if (tuple.Diagnostic == null)
                 {
                     return;
                 }
                 
-                context.ReportDiagnostic(tuple.Diagnostic);
+                sourceProductionContext.ReportDiagnostic(tuple.Diagnostic);
             });
         
         return frameworkWithDiagnostic

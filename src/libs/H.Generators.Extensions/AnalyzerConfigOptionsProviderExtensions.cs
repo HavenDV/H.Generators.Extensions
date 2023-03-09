@@ -137,14 +137,12 @@ public static class AnalyzerConfigOptionsProviderExtensions
     /// Try recognize the framework using MSBuild properties and constants.
     /// </summary>
     /// <param name="provider"></param>
-    /// <param name="prefix">Prefix for your MSBuild DefineConstants property</param>
     /// <returns></returns>
-    public static Framework TryRecognizeFramework(this AnalyzerConfigOptionsProvider provider, string prefix)
+    public static Framework TryRecognizeFramework(this AnalyzerConfigOptionsProvider provider)
     {
         provider = provider ?? throw new ArgumentNullException(nameof(provider));
-        prefix = prefix ?? throw new ArgumentNullException(nameof(prefix));
 
-        var constants = provider.GetGlobalOption("DefineConstants", prefix: prefix) ?? string.Empty;
+        var constants = provider.GetGlobalOption("DefineConstants", prefix: "RecognizeFramework") ?? string.Empty;
         var useWpf = bool.Parse(provider.GetGlobalOption("UseWPF") ?? bool.FalseString) || constants.Contains("HAS_WPF");
         var useWinUi = bool.Parse(provider.GetGlobalOption("UseWinUI") ?? bool.FalseString) || constants.Contains("HAS_WINUI");
         var useMaui = bool.Parse(provider.GetGlobalOption("UseMaui") ?? bool.FalseString) || constants.Contains("HAS_MAUI");
@@ -177,12 +175,11 @@ HAS_WPF, HAS_WINUI, HAS_UWP, HAS_UNO, HAS_UNO_WINUI, HAS_AVALONIA, HAS_MAUI";
     /// Recognizes the framework using MSBuild properties and constants or throws an exception.
     /// </summary>
     /// <param name="provider"></param>
-    /// <param name="prefix"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public static Framework RecognizeFramework(this AnalyzerConfigOptionsProvider provider, string prefix)
+    public static Framework RecognizeFramework(this AnalyzerConfigOptionsProvider provider)
     {
-        var framework = provider.TryRecognizeFramework(prefix);
+        var framework = provider.TryRecognizeFramework();
         if (framework != Framework.None)
         {
             return framework;

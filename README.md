@@ -18,12 +18,12 @@ I want to note that PrivateAssets="all" is required to rule out some issues.
 - `options.GetRequiredOption(AdditionalText, string name)`
 - `options.TryRecognizeFramework(string prefix)`
 - `options.RecognizeFramework(string prefix)`
-To recognize the framework, you will need to add the following code to your %PackageId%.props(In this case, the passed prefix will be equal to %PackageId%):
+To recognize the framework, you will need to add the following code to your %PackageId%.props:
 ```xml
 <Project>
 
   <ItemGroup>
-    <CompilerVisibleProperty Include="%PackageId%_DefineConstants"/>
+    <CompilerVisibleProperty Include="RecognizeFramework_DefineConstants"/>
     <CompilerVisibleProperty Include="UseWPF"/>
     <CompilerVisibleProperty Include="UseWinUI"/>
     <CompilerVisibleProperty Include="UseMaui"/>
@@ -32,7 +32,7 @@ To recognize the framework, you will need to add the following code to your %Pac
   <Target Name="CreateDefineConstants" BeforeTargets="GenerateMSBuildEditorConfigFileShouldRun;GenerateMSBuildEditorConfigFileCore">
 
     <PropertyGroup>
-      <%PackageId%_DefineConstants>$(DefineConstants.Replace(';',','))</%PackageId%_DefineConstants>
+      <RecognizeFramework_DefineConstants>$(DefineConstants.Replace(';',','))</RecognizeFramework_DefineConstants>
     </PropertyGroup>
 
   </Target>
