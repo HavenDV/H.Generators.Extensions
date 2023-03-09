@@ -58,6 +58,34 @@ public static class IncrementalValuesProviderExtensions
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="context"></param>
+    /// <param name="source"></param>
+    public static void AddSource(
+        this IncrementalValueProvider<EquatableArray<FileWithName>> source,
+        IncrementalGeneratorInitializationContext context)
+    {
+        source
+            .SelectMany(static (x, _) => x)
+            .AddSource(context);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="source"></param>
+    public static void AddSource(
+        this IncrementalValuesProvider<EquatableArray<FileWithName>> source,
+        IncrementalGeneratorInitializationContext context)
+    {
+        source
+            .SelectMany(static (x, _) => x)
+            .AddSource(context);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="source"></param>
     /// <param name="selector"></param>
     /// <param name="initializationContext"></param>
@@ -67,7 +95,7 @@ public static class IncrementalValuesProviderExtensions
     /// <returns></returns>
     public static IncrementalValuesProvider<TResult> SelectAndReportExceptions<TSource, TResult>(
         this IncrementalValuesProvider<TSource> source,
-        Func<TSource, TResult> selector,
+        Func<TSource, CancellationToken, TResult> selector,
         IncrementalGeneratorInitializationContext initializationContext,
         string id = "SRE001")
     {
@@ -78,7 +106,7 @@ public static class IncrementalValuesProviderExtensions
                 
                 try
                 {
-                    return (Value: selector(value), Exception: null);
+                    return (Value: selector(value, cancellationToken), Exception: null);
                 }
                 catch (Exception exception)
                 {
@@ -96,6 +124,26 @@ public static class IncrementalValuesProviderExtensions
         return outputWithErrors
             .Where(static x => x.Exception is null)
             .Select(static (x, _) => x.Value!);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="selector"></param>
+    /// <param name="initializationContext"></param>
+    /// <param name="id"></param>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <returns></returns>
+    public static IncrementalValuesProvider<TResult> SelectAndReportExceptions<TSource, TResult>(
+        this IncrementalValuesProvider<TSource> source,
+        Func<TSource, TResult> selector,
+        IncrementalGeneratorInitializationContext initializationContext,
+        string id = "SRE001")
+    {
+        return source
+            .SelectAndReportExceptions((x, _) => selector(x), initializationContext, id);
     }
 
     /// <summary>
