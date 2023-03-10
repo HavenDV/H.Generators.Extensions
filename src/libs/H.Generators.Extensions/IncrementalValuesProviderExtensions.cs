@@ -87,6 +87,19 @@ public static class IncrementalValuesProviderExtensions
     /// 
     /// </summary>
     /// <param name="source"></param>
+    public static IncrementalValueProvider<EquatableArray<TSource>> CollectAsEquatableArray<TSource>(
+        this IncrementalValuesProvider<TSource> source)
+        where TSource : IEquatable<TSource>
+    {
+        return source
+            .Collect()
+            .Select(static (x, _) => x.AsEquatableArray());
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
     /// <param name="selector"></param>
     /// <param name="initializationContext"></param>
     /// <param name="id"></param>
