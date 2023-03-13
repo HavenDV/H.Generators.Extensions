@@ -16,8 +16,8 @@ I want to note that PrivateAssets="all" is required to rule out some issues.
 - `options.GetOption(AdditionalText, string name)`
 - `options.GetRequiredGlobalOption(string name)`
 - `options.GetRequiredOption(AdditionalText, string name)`
-- `options.TryRecognizeFramework(string prefix)`
-- `options.RecognizeFramework(string prefix)`
+- `options.TryRecognizeFramework()`
+- `options.RecognizeFramework()`
 To recognize the framework, you will need to add the following code to your %PackageId%.props:
 ```xml
 <Project>
