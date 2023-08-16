@@ -143,6 +143,45 @@ public static class IncrementalValuesProviderExtensions
     }
     
     /// <summary>
+    ///
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="initializationContext"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static IncrementalValuesProvider<T> SelectAndReportDiagnostics<T>(
+        this IncrementalValuesProvider<ResultWithDiagnostics<T?>> source,
+        IncrementalGeneratorInitializationContext initializationContext)
+    {
+        initializationContext.RegisterSourceOutput(
+            source.SelectMany(static (x, _) => x.Diagnostics),
+            static (context, diagnostic) => context.ReportDiagnostic(diagnostic));
+
+        return source
+            .Where(static x => x.Result is not null)
+            .Select(static (x, _) => x.Result!);
+    }
+    
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="initializationContext"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static IncrementalValueProvider<T?> SelectAndReportDiagnostics<T>(
+        this IncrementalValueProvider<ResultWithDiagnostics<T?>> source,
+        IncrementalGeneratorInitializationContext initializationContext)
+    {
+        initializationContext.RegisterSourceOutput(
+            source.SelectMany(static (x, _) => x.Diagnostics),
+            static (context, diagnostic) => context.ReportDiagnostic(diagnostic));
+
+        return source
+            .Select(static (x, _) => x.Result);
+    }
+    
+    /// <summary>
     /// 
     /// </summary>
     /// <param name="source"></param>
