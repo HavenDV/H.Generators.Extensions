@@ -50,5 +50,5 @@ public static class ResultWithDiagnosticsExtensions
     public static ResultWithDiagnostics<T> ToResultWithDiagnostics<T>(this T result, ImmutableArray<Diagnostic> diagnostics)
     {
         return new ResultWithDiagnostics<T>(result, diagnostics.AsEquatableArray());
-    }   
+    }
 }

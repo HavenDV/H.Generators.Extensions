@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,7 +13,7 @@ namespace System;
 /// <summary>
 /// A polyfill type that mirrors some methods from <see cref="HashCode"/> on .NET 6.
 /// </summary>
-internal struct HashCode
+internal struct HashCode : IEquatable<HashCode>
 {
     private const uint Prime1 = 2654435761U;
     private const uint Prime2 = 2246822519U;
@@ -184,5 +184,10 @@ internal struct HashCode
     private static uint RotateLeft(uint value, int offset)
     {
         return (value << offset) | (value >> (32 - offset));
+    }
+
+    public bool Equals(HashCode other)
+    {
+        throw new NotImplementedException();
     }
 }

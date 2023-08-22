@@ -13,7 +13,7 @@ public readonly record struct FileWithName(
     /// 
     /// </summary>
     public static FileWithName Empty => new(string.Empty, string.Empty);
-    
+
     /// <summary>
     /// 
     /// </summary>

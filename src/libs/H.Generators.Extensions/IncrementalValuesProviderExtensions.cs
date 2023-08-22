@@ -32,7 +32,7 @@ public static class IncrementalValuesProviderExtensions
                 source: file.Text);
         });
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -48,13 +48,13 @@ public static class IncrementalValuesProviderExtensions
             {
                 return;
             }
-            
+
             context.AddSource(
                 hintName: file.Name,
                 source: file.Text);
         });
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -68,7 +68,7 @@ public static class IncrementalValuesProviderExtensions
             .SelectMany(static (x, _) => x)
             .AddSource(context);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -82,7 +82,7 @@ public static class IncrementalValuesProviderExtensions
             .SelectMany(static (x, _) => x)
             .AddSource(context);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -95,7 +95,7 @@ public static class IncrementalValuesProviderExtensions
             .Collect()
             .Select(static (x, _) => x.AsEquatableArray());
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -116,7 +116,7 @@ public static class IncrementalValuesProviderExtensions
             .Select<TSource, (TResult? Value, Exception? Exception)>((value, cancellationToken) =>
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                
+
                 try
                 {
                     return (Value: selector(value, cancellationToken), Exception: null);
@@ -134,14 +134,14 @@ public static class IncrementalValuesProviderExtensions
                 {
                     return;
                 }
-                
+
                 context.ReportException(id: id, exception: tuple.Exception);
             });
-        
+
         return outputWithErrors
             .Select(static (x, _) => x.Value!);
     }
-    
+
     /// <summary>
     ///
     /// </summary>
@@ -161,7 +161,7 @@ public static class IncrementalValuesProviderExtensions
             .Where(static x => x.Result is not null)
             .Select(static (x, _) => x.Result!);
     }
-    
+
     /// <summary>
     ///
     /// </summary>
@@ -180,7 +180,7 @@ public static class IncrementalValuesProviderExtensions
         return source
             .Select(static (x, _) => x.Result);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -201,7 +201,7 @@ public static class IncrementalValuesProviderExtensions
             .Select<TSource, (TResult? Value, Exception? Exception)>((value, cancellationToken) =>
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                
+
                 try
                 {
                     return (Value: selector(value, cancellationToken), Exception: null);
@@ -218,12 +218,12 @@ public static class IncrementalValuesProviderExtensions
             {
                 context.ReportException(id: id, exception: tuple.Exception!);
             });
-        
+
         return outputWithErrors
             .Where(static x => x.Exception is null)
             .Select(static (x, _) => x.Value!);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -243,7 +243,7 @@ public static class IncrementalValuesProviderExtensions
         return source
             .SelectAndReportExceptions((x, _) => selector(x), initializationContext, id);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -298,7 +298,7 @@ public static class IncrementalValuesProviderExtensions
             .Where(static x => x is not null)
             .Select(static (x, _) => x!.Value);
     }
-    
+
     /// <summary>
     /// Returns <see cref="Framework.None"/> if the framework is not recognized and report diagnostic.
     /// </summary>
@@ -322,10 +322,10 @@ public static class IncrementalValuesProviderExtensions
                             true),
                         Location.None)
                     : null;
-                
+
                 return (Framework: framework, Diagnostic: diagnostic);
             });
-        
+
         context.RegisterSourceOutput(
             frameworkWithDiagnostic,
             static (sourceProductionContext, tuple) =>
@@ -334,10 +334,10 @@ public static class IncrementalValuesProviderExtensions
                 {
                     return;
                 }
-                
+
                 sourceProductionContext.ReportDiagnostic(tuple.Diagnostic);
             });
-        
+
         return frameworkWithDiagnostic
             .Select(static (x, _) => x.Framework);
     }

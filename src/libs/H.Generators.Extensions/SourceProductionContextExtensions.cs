@@ -26,7 +26,7 @@ public static class SourceProductionContextExtensions
 
         context.ReportDiagnostic(exception.ToDiagnostic(id, prefix));
     }
-    
+
     /// <summary>
     /// Creates a diagnostic for the selected exception.
     /// </summary>

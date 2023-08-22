@@ -19,10 +19,10 @@ public static class ConvertExtensions
         {
             return defaultValue;
         }
-        
+
         return (bool)typedConstant.Value!;
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -34,7 +34,7 @@ public static class ConvertExtensions
         {
             return null;
         }
-        
+
         return (bool)typedConstant.Value!;
     }
 
@@ -62,7 +62,7 @@ public static class ConvertExtensions
         {
             return null;
         }
-        
+
         return (T)typedConstant.Value;
     }
 }

@@ -9,7 +9,7 @@ public enum Framework
     /// Not recognized.
     /// </summary>
     None,
-    
+
     /// <summary>
     /// Windows Presentation Foundation.
     /// </summary>

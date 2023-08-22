@@ -76,7 +76,7 @@ public static class AnalyzerConfigOptionsProviderExtensions
         provider = provider ?? throw new ArgumentNullException(nameof(provider));
         name = name ?? throw new ArgumentNullException(nameof(name));
         group ??= "AdditionalFiles";
-        
+
         return provider.GetOptions(text).GetOption($"build_metadata.{group}.{GetFullName(name, prefix)}");
     }
 
@@ -170,7 +170,7 @@ public static class AnalyzerConfigOptionsProviderExtensions
     public const string FrameworkIsNotRecognized = @"Framework is not recognized.
 You can explicitly specify the framework by setting one of the following constants in your project:
 HAS_WPF, HAS_WINUI, HAS_UWP, HAS_UNO, HAS_UNO_WINUI, HAS_AVALONIA, HAS_MAUI";
-    
+
     /// <summary>
     /// Recognizes the framework using MSBuild properties and constants or throws an exception.
     /// </summary>
@@ -184,7 +184,7 @@ HAS_WPF, HAS_WINUI, HAS_UWP, HAS_UNO, HAS_UNO_WINUI, HAS_AVALONIA, HAS_MAUI";
         {
             return framework;
         }
-        
+
         throw new InvalidOperationException(FrameworkIsNotRecognized);
     }
 }

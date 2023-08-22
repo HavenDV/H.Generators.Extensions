@@ -17,7 +17,7 @@ public static class AttributeDataExtensions
     public static ITypeSymbol? GetGenericTypeArgument(this AttributeData attributeData, int position)
     {
         attributeData = attributeData ?? throw new ArgumentNullException(nameof(attributeData));
-        
+
         return attributeData.AttributeClass?.TypeArguments.ElementAtOrDefault(position);
     }
 
@@ -31,7 +31,7 @@ public static class AttributeDataExtensions
     public static TypedConstant GetNamedArgument(this AttributeData attributeData, string name)
     {
         attributeData = attributeData ?? throw new ArgumentNullException(nameof(attributeData));
-        
+
         return attributeData.NamedArguments
             .FirstOrDefault(pair => pair.Key == name)
             .Value;
