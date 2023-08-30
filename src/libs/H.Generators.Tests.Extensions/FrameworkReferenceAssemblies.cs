@@ -6,11 +6,11 @@ namespace H.Generators.Tests.Extensions;
 /// <summary>
 /// 
 /// </summary>
-public static class FrameworkReferencesAssemblies
+public static class FrameworkReferenceAssemblies
 {
     private static readonly Lazy<ReferenceAssemblies> _lazyNet70Uwp =
         new(() =>
-            LatestReferencesAssemblies.Net70Windows.AddPackages(
+            LatestReferenceAssemblies.Net70Windows.AddPackages(
                 ImmutableArray.Create(
                     new PackageIdentity("Microsoft.NETCore.UniversalWindowsPlatform", "6.2.14"),
                     new PackageIdentity("Microsoft.UI.Xaml", "2.8.5"),
@@ -18,7 +18,7 @@ public static class FrameworkReferencesAssemblies
     
     private static readonly Lazy<ReferenceAssemblies> _lazyNet70WinUi =
         new(() =>
-            LatestReferencesAssemblies.Net70Windows.AddPackages(
+            LatestReferenceAssemblies.Net70Windows.AddPackages(
                 ImmutableArray.Create(
                     new PackageIdentity("Microsoft.WindowsAppSDK", "1.4.230822000"),
                     new PackageIdentity("Microsoft.UI.Xaml", "2.8.5"),
@@ -26,26 +26,26 @@ public static class FrameworkReferencesAssemblies
     
     private static readonly Lazy<ReferenceAssemblies> _lazyNet70Maui =
         new(() =>
-            LatestReferencesAssemblies.Net70.AddPackages(
+            LatestReferenceAssemblies.Net70.AddPackages(
                 ImmutableArray.Create(
                     new PackageIdentity("Microsoft.Maui.Controls.Ref.any", "7.0.92"),
                     new PackageIdentity("Microsoft.Maui.Core.Ref.any", "7.0.92"))));
     
-    private static readonly Lazy<ReferenceAssemblies> _lazyNet70Avalonia =
+    private static readonly Lazy<ReferenceAssemblies> _lazyNet60Avalonia =
         new(() =>
-            LatestReferencesAssemblies.Net70.AddPackages(
+            ReferenceAssemblies.Net.Net60.AddPackages(
                 ImmutableArray.Create(
                     new PackageIdentity("Avalonia", "11.0.4"))));
     
     private static readonly Lazy<ReferenceAssemblies> _lazyNet70Uno =
         new(() =>
-            LatestReferencesAssemblies.Net70.AddPackages(
+            LatestReferenceAssemblies.Net70.AddPackages(
                 ImmutableArray.Create(
                     new PackageIdentity("Uno.UI", "4.9.45"))));
     
     private static readonly Lazy<ReferenceAssemblies> _lazyNet70UnoWinUi =
         new(() =>
-            LatestReferencesAssemblies.Net70.AddPackages(
+            LatestReferenceAssemblies.Net70.AddPackages(
                 ImmutableArray.Create(
                     new PackageIdentity("Uno.WinUI", "4.9.45"))));
     
@@ -67,7 +67,7 @@ public static class FrameworkReferencesAssemblies
     /// <summary>
     /// 
     /// </summary>
-    public static ReferenceAssemblies Net70Avalonia => _lazyNet70Avalonia.Value;
+    public static ReferenceAssemblies Net60Avalonia => _lazyNet60Avalonia.Value;
     
     /// <summary>
     /// 

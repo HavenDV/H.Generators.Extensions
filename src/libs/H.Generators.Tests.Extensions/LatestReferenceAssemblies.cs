@@ -6,7 +6,7 @@ namespace H.Generators.Tests.Extensions;
 /// <summary>
 /// 
 /// </summary>
-public static class LatestReferencesAssemblies
+public static class LatestReferenceAssemblies
 {
     private static readonly Lazy<ReferenceAssemblies> _lazyNet70 =
         new(() => new ReferenceAssemblies(
