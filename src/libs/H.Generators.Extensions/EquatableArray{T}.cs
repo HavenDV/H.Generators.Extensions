@@ -69,28 +69,28 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnume
     }
 
     /// <sinheritdoc/>
-    public bool Equals(EquatableArray<T> array)
+    public bool Equals(EquatableArray<T> other)
     {
-        return AsSpan().SequenceEqual(array.AsSpan());
+        return AsSpan().SequenceEqual(other.AsSpan());
     }
 
     /// <sinheritdoc/>
     public override bool Equals(object? obj)
     {
-        return obj is EquatableArray<T> array && Equals(this, array);
+        return obj is EquatableArray<T> other && Equals(this, other);
     }
 
     /// <sinheritdoc/>
     public override int GetHashCode()
     {
-        if (this.array is not T[] array)
+        if (this.array is not { } other)
         {
             return 0;
         }
 
         HashCode hashCode = default;
 
-        foreach (T item in array)
+        foreach (T item in other)
         {
             hashCode.Add(item);
         }
@@ -113,7 +113,9 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnume
     /// </summary>
     /// <param name="array">The input <see cref="ImmutableArray{T}"/> instance.</param>
     /// <returns>An <see cref="EquatableArray{T}"/> instance from a given <see cref="ImmutableArray{T}"/>.</returns>
+#pragma warning disable CA1000
     public static EquatableArray<T> FromImmutableArray(ImmutableArray<T> array)
+#pragma warning restore CA1000
     {
         return new(array);
     }
@@ -197,6 +199,11 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnume
         return !left.Equals(right);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
     public ImmutableArray<T> ToImmutableArray()
     {
         throw new NotImplementedException();
