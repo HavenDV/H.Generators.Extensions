@@ -37,6 +37,12 @@ public static class FrameworkReferenceAssemblies
                 ImmutableArray.Create(
                     new PackageIdentity("Avalonia", "11.0.4"))));
     
+    private static readonly Lazy<ReferenceAssemblies> _lazyNet70Avalonia =
+        new(() =>
+            LatestReferenceAssemblies.Net70.AddPackages(
+                ImmutableArray.Create(
+                    new PackageIdentity("Avalonia", "11.0.4"))));
+    
     private static readonly Lazy<ReferenceAssemblies> _lazyNet70Uno =
         new(() =>
             LatestReferenceAssemblies.Net70.AddPackages(
@@ -68,6 +74,11 @@ public static class FrameworkReferenceAssemblies
     /// 
     /// </summary>
     public static ReferenceAssemblies Net60Avalonia => _lazyNet60Avalonia.Value;
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static ReferenceAssemblies Net70Avalonia => _lazyNet70Avalonia.Value;
     
     /// <summary>
     /// 
