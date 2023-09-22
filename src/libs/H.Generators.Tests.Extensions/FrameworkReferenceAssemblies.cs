@@ -47,13 +47,13 @@ public static class FrameworkReferenceAssemblies
         new(() =>
             LatestReferenceAssemblies.Net70.AddPackages(
                 ImmutableArray.Create(
-                    new PackageIdentity("Uno.UI", "4.9.45"))));
+                    new PackageIdentity("Uno.UI", "4.10.13"))));
     
     private static readonly Lazy<ReferenceAssemblies> _lazyNet70UnoWinUi =
         new(() =>
             LatestReferenceAssemblies.Net70.AddPackages(
                 ImmutableArray.Create(
-                    new PackageIdentity("Uno.WinUI", "4.9.45"))));
+                    new PackageIdentity("Uno.WinUI", "4.10.13"))));
     
     /// <summary>
     /// 
