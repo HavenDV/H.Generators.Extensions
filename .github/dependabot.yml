@@ -15,3 +15,5 @@ updates:
           - "*"
     ignore:
       - dependency-name: "Microsoft.CodeAnalysis.Common"
+      - dependency-name: "Microsoft.CodeAnalysis.Workspaces.Common"
+      - dependency-name: "Microsoft.CodeAnalysis.CSharp.Workspaces"
