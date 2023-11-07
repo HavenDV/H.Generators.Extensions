@@ -48,6 +48,8 @@ public static class StringExtensions
         };
     }
 
+    private static readonly char[] Separator = { '\n' };
+
     /// <summary>
     /// Removes blank lines where there are only spaces.
     /// Used to preserve formatting in code where lines of code may be missing based on conditions.
@@ -64,7 +66,7 @@ public static class StringExtensions
             separator: "\n",
             values: text
                 .NormalizeLineEndings()
-                .Split(new[] { '\n' }, StringSplitOptions.None)
+                .Split(Separator, StringSplitOptions.None)
                 .Where(static line => line.Length == 0 || !line.All(char.IsWhiteSpace)));
     }
 
