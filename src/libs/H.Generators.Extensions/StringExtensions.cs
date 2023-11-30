@@ -21,7 +21,11 @@ public static class StringExtensions
         {
             null => throw new ArgumentNullException(nameof(input)),
             "" => throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input)),
+#if NET6_0_OR_GREATER
+            _ => string.Concat(input[0].ToString().ToUpper(CultureInfo.InvariantCulture), input.AsSpan(1)),
+#else
             _ => input[0].ToString().ToUpper(CultureInfo.InvariantCulture) + input.Substring(1),
+#endif
         };
     }
 
@@ -42,9 +46,13 @@ public static class StringExtensions
             "event" => "@event",
             "Namespace" => "@namespace",
             "namespace" => "@namespace",
-#pragma warning disable CA1308
+#pragma warning disable CA1308 // Normalize strings to uppercase
+#if NET6_0_OR_GREATER
+            _ => string.Concat(input[0].ToString().ToLower(CultureInfo.InvariantCulture), input.AsSpan(1)),
+#else
             _ => input[0].ToString().ToLower(CultureInfo.InvariantCulture) + input.Substring(1),
-#pragma warning restore CA1308
+#endif
+#pragma warning restore CA1308 // Normalize strings to uppercase
         };
     }
 

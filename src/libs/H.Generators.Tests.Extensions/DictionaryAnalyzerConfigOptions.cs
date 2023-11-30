@@ -26,6 +26,9 @@ public sealed class DictionaryAnalyzerConfigOptions : AnalyzerConfigOptions
     /// <returns></returns>
     public override bool TryGetValue(string key, out string value)
     {
-        return Properties.TryGetValue(key, out value);
+        var result = Properties.TryGetValue(key, out var newValue);
+        value = newValue ?? string.Empty;
+
+        return result;
     }
 }
