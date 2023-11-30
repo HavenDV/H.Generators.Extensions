@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 
-namespace H.Generators;
+namespace H.Generators.Extensions;
 
 /// <summary>
 /// 

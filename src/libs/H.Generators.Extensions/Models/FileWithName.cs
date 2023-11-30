@@ -1,4 +1,4 @@
-﻿namespace H.Generators;
+﻿namespace H.Generators.Extensions;
 
 /// <summary>
 /// 
@@ -12,7 +12,9 @@ public readonly record struct FileWithName(
     /// <summary>
     /// 
     /// </summary>
-    public static FileWithName Empty => new(string.Empty, string.Empty);
+    public static FileWithName Empty => new(
+        Name: string.Empty,
+        Text: string.Empty);
 
     /// <summary>
     /// 

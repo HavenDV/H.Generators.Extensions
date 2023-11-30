@@ -1,4 +1,4 @@
-﻿namespace H.Generators;
+﻿namespace H.Generators.Extensions;
 
 /// <summary>
 /// Framework enumeration for generators that are platform specific.

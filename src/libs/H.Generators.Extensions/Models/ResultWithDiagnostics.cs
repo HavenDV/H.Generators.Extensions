@@ -1,8 +1,7 @@
 ﻿using System.Collections.Immutable;
-using H.Generators.Extensions;
 using Microsoft.CodeAnalysis;
 
-namespace H.Generators;
+namespace H.Generators.Extensions;
 
 /// <summary>
 /// 
