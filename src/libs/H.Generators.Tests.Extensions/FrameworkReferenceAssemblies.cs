@@ -28,7 +28,7 @@ public static class FrameworkReferenceAssemblies
         new(() =>
             LatestReferenceAssemblies.Net70Windows.AddPackages(
                 ImmutableArray.Create(
-                    new PackageIdentity("Microsoft.WindowsAppSDK", "1.4.231008000"),
+                    new PackageIdentity("Microsoft.WindowsAppSDK", "1.4.231115000"),
                     new PackageIdentity("Microsoft.UI.Xaml", "2.8.6"),
                     new PackageIdentity("Microsoft.Windows.SDK.NET.Ref", "10.0.22621.31"))));
     
@@ -36,7 +36,7 @@ public static class FrameworkReferenceAssemblies
         new(() =>
             LatestReferenceAssemblies.Net80Windows.AddPackages(
                 ImmutableArray.Create(
-                    new PackageIdentity("Microsoft.WindowsAppSDK", "1.4.231008000"),
+                    new PackageIdentity("Microsoft.WindowsAppSDK", "1.4.231115000"),
                     new PackageIdentity("Microsoft.UI.Xaml", "2.8.6"),
                     new PackageIdentity("Microsoft.Windows.SDK.NET.Ref", "10.0.22621.31"))));
     
@@ -88,13 +88,13 @@ public static class FrameworkReferenceAssemblies
         new(() =>
             LatestReferenceAssemblies.Net70.AddPackages(
                 ImmutableArray.Create(
-                    new PackageIdentity("Uno.UI", "5.0.31"))));
+                    new PackageIdentity("Uno.UI", "5.0.48"))));
     
     private static readonly Lazy<ReferenceAssemblies> _lazyNet70UnoWinUi =
         new(() =>
             LatestReferenceAssemblies.Net70.AddPackages(
                 ImmutableArray.Create(
-                    new PackageIdentity("Uno.WinUI", "5.0.31"))));
+                    new PackageIdentity("Uno.WinUI", "5.0.48"))));
     
     private static readonly Lazy<ReferenceAssemblies> _lazyNet80Uno4 =
         new(() =>
@@ -112,13 +112,13 @@ public static class FrameworkReferenceAssemblies
         new(() =>
             LatestReferenceAssemblies.Net80.AddPackages(
                 ImmutableArray.Create(
-                    new PackageIdentity("Uno.UI", "5.0.31"))));
+                    new PackageIdentity("Uno.UI", "5.0.48"))));
     
     private static readonly Lazy<ReferenceAssemblies> _lazyNet80UnoWinUi =
         new(() =>
             LatestReferenceAssemblies.Net80.AddPackages(
                 ImmutableArray.Create(
-                    new PackageIdentity("Uno.WinUI", "5.0.31"))));
+                    new PackageIdentity("Uno.WinUI", "5.0.48"))));
     
     /// <summary>
     /// 
