@@ -27,14 +27,28 @@ public static class LatestReferenceAssemblies
             "net8.0",
             new PackageIdentity(
                 "Microsoft.NETCore.App.Ref",
-                "8.0.0-rc.2.23479.6"),
+                "8.0.11"),
             Path.Combine("ref", "net8.0")));
     
     private static readonly Lazy<ReferenceAssemblies> _lazyNet80Windows =
         new(() =>
             Net80.AddPackages(
                 ImmutableArray.Create(
-                    new PackageIdentity("Microsoft.WindowsDesktop.App.Ref", "8.0.0-rc.2.23479.10"))));
+                    new PackageIdentity("Microsoft.WindowsDesktop.App.Ref", "8.0.11"))));
+    
+    private static readonly Lazy<ReferenceAssemblies> _lazyNet90 =
+        new(() => new ReferenceAssemblies(
+            "net9.0",
+            new PackageIdentity(
+                "Microsoft.NETCore.App.Ref",
+                "9.0.0"),
+            Path.Combine("ref", "net9.0")));
+    
+    private static readonly Lazy<ReferenceAssemblies> _lazyNet90Windows =
+        new(() =>
+            Net80.AddPackages(
+                ImmutableArray.Create(
+                    new PackageIdentity("Microsoft.WindowsDesktop.App.Ref", "9.0.0"))));
     
     /// <summary>
     /// 
@@ -55,4 +69,14 @@ public static class LatestReferenceAssemblies
     /// 
     /// </summary>
     public static ReferenceAssemblies Net80Windows => _lazyNet80Windows.Value;
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static ReferenceAssemblies Net90 => _lazyNet90.Value;
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static ReferenceAssemblies Net90Windows => _lazyNet90Windows.Value;
 }
