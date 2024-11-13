@@ -166,12 +166,12 @@ internal struct HashCode : IEquatable<HashCode>
     /// <inheritdoc/>
     [Obsolete("HashCode is a mutable struct and should not be compared with other HashCodes. Use ToHashCode to retrieve the computed hash code.", error: true)]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public override int GetHashCode() => throw new NotSupportedException();
+    public override int GetHashCode() => 0;
 
     /// <inheritdoc/>
     [Obsolete("HashCode is a mutable struct and should not be compared with other HashCodes.", error: true)]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public override bool Equals(object? obj) => throw new NotSupportedException();
+    public override bool Equals(object? obj) => false;
 
     /// <summary>
     /// Rotates the specified value left by the specified number of bits.
@@ -189,7 +189,7 @@ internal struct HashCode : IEquatable<HashCode>
 
     public bool Equals(HashCode other)
     {
-        throw new NotImplementedException();
+        return false;
     }
 }
 #endif
